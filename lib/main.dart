@@ -6,6 +6,7 @@ void main() {
   runApp(MaterialApp(home: PaintApp()));
 }
 
+//#region Adding or removing a component from the layout
 class SampleApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -66,7 +67,9 @@ class _SampleAppPageState extends State<SampleAppPage> {
     );
   }
 }
+//#endregion
 
+//#region Animating a widget
 class FadeAppTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -125,7 +128,9 @@ class _MyFadeTest extends State<MyFadeTest> with TickerProviderStateMixin {
     );
   }
 }
+//#endregion
 
+//#region PaintApp
 class PaintApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(body: Signature());
@@ -172,3 +177,17 @@ class SignaturePainter extends CustomPainter {
 
   bool shouldRepaint(SignaturePainter other) => other.points != points;
 }
+//#endregion
+
+//#region to build custom widgets
+class CustomButton extends StatelessWidget {
+  final String label;
+
+  CustomButton(this.label);
+
+  @override
+  Widget build(BuildContext context) {
+    return RaisedButton(onPressed: () {}, child: Text(label));
+  }
+}
+//#endregion
