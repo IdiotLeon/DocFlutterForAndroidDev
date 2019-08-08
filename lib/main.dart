@@ -10,7 +10,7 @@ class SampleApp extends StatelessWidget {
     return MaterialApp(
       title: 'Sample App',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.amber,
       ),
       home: SampleAppPage(),
     );
@@ -26,6 +26,20 @@ class SampleAppPage extends StatefulWidget {
 
 class _SampleAppPageState extends State<SampleAppPage> {
   String textToShow = "I like Flutter";
+  bool toggle = true;
+  void _toggle() {
+    setState(() {
+      toggle = !toggle;
+    });
+  }
+
+  _getToggleChild() {
+    if (toggle) {
+      return Text('Toggle One');
+    } else {
+      return MaterialButton(onPressed: () {}, child: Text('Toggle Two'));
+    }
+  }
 
   void _updateText() {
     setState(() {
@@ -39,9 +53,11 @@ class _SampleAppPageState extends State<SampleAppPage> {
       appBar: AppBar(
         title: Text("Sample App"),
       ),
-      body: Center(child: Text(textToShow)),
+      body: Center(
+        child: _getToggleChild(),
+      ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _updateText,
+        onPressed: _toggle,
         tooltip: 'Update Text',
         child: Icon(Icons.update),
       ),
